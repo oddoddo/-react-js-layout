@@ -5,31 +5,6 @@ import DataTables from './views/datatables/DataTables'
 import Profile from './views/profile/Profile'
 import Signin from './views/signin/Signin'
 import Layout, { LayoutNone } from './components/layout/Layout'
-// import LayoutNone from './components/layout/LayoutNone'
-
-const routeArr = [
-    {
-        path: '/',
-        element: <Home />,
-        background: 'red',
-    },
-    {
-        path: '/marketplace',
-        element: <MarketPlace />,
-    },
-    {
-        path: '/datatables',
-        element: <DataTables />,
-    },
-    {
-        path: '/profile',
-        element: <Profile />,
-    },
-    // {
-    //     path: '/signin',
-    //     element: <Signin />,
-    // },
-]
 
 const Routers = () => {
     return (

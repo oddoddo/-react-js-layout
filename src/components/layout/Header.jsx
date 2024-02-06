@@ -6,6 +6,7 @@ import Gnb from './Gnb'
 import gsap from 'gsap'
 
 const Header = () => {
+    // nav-bar fixed
     const [isScroll, setIsScroll] = useState(false)
 
     useEffect(() => {
@@ -26,6 +27,32 @@ const Header = () => {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    // 스크롤 이벤트 함수
+    const HandleScoll = () => {
+        const scrollY = window.scrollY // 현재 스크롤 위치
+        const navBelt = document.querySelector('.nav-belt__wrapper') // 헤더
+        const navBar = document.querySelector('.nav-bar__wrapper') // 헤더
+        const navBarHeight = navBar.offsetHeight // 헤더 높이
+        const swiperHeight = document.querySelector('.topCont')?.offsetHeight || 0 // 슬라이드 높이
+
+        // if : 100px 이상 스크롤 되면 헤더에 배경색을 입힌다.
+        if (scrollY > swiperHeight - navBarHeight) {
+            // gsap.to(요소, {옵션})
+            gsap.to(navBar, { backgroundColor: '#fff', duration: 0.5 })
+            gsap.to(navBelt, { backgroundColor: '#f6f7f8', duration: 0.5 })
+
+            gsap.to(navBelt.querySelectorAll('button'), { color: '#000', duration: 0.5 })
+            gsap.to(navBar.querySelectorAll('button, a'), { color: '#000', duration: 0.5 })
+        } else {
+            // else : 100px 이하로 스크롤 되면 배경색을 없앤다.
+            gsap.to(navBar, { backgroundColor: '', duration: 0.5 })
+            gsap.to(navBelt, { backgroundColor: '', duration: 0.5 })
+        }
+    }
+
+    // 스크롤 이벤트 등록
+    window.addEventListener('scroll', HandleScoll)
 
     return (
         <Box
